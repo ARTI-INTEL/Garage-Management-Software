@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  client:
+    name: Client (lint, tests, build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+  server:
+    name: Server (syntax + tests)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci_root_pw
+          MYSQL_DATABASE: gms_db
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -pci_root_pw"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    env:
+      DB_HOST: 127.0.0.1
+      DB_USER: root
+      DB_PASSWORD: ci_root_pw
+      DB_NAME: gms_db
+      JWT_SECRET: ci_jwt_secret_not_for_production
+      GARAGE_CODE: ADMIN
+      CLIENT_URL: http://localhost:5173
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+      - run: npm ci
+      - name: Syntax-check all server sources and tests
+        run: |
+          set -e
+          find src migrations tests \( -name '*.js' -o -name '*.mjs' \) | while read -r f; do
+            node --check "$f" || exit 1
+          done
+          echo "All files parse"
+      - name: Run migrations (creates schema + seeded users)
+        run: npm run migrate
+      - name: Run test suites
+        run: npm test
+      - name: End-to-end API flow (starts its own server)
+        run: |
+          set -e
+          node src/server.js &
+          SERVER_PID=$!
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:5000/api/health > /dev/null && break
+            sleep 0.5
+          done
+          curl -sf http://localhost:5000/api/health > /dev/null
+          node tests/e2e-flow.mjs
+          kill $SERVER_PID
