@@ -37,7 +37,10 @@ services:
     command: sh -c "npm run migrate && npm start"
 
   client:
-    build: ./client
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:5000}
     restart: unless-stopped
     depends_on:
       - server
