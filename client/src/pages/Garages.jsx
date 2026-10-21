@@ -136,7 +136,7 @@ const Garages = () => {
       {loading ? (
         <p className="text-gray-500">Loading garages...</p>
       ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-surface rounded-lg shadow overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
@@ -156,7 +156,7 @@ const Garages = () => {
                   <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     {g.garage_name}
                     {g.id === me?.garage?.id && (
-                      <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Your garage</span>
+                      <span className="ml-2 text-xs bg-blue-100 text-blue-400 px-2 py-0.5 rounded-full">Your garage</span>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-600 font-mono">{g.garage_code}</td>
@@ -374,7 +374,7 @@ const Garages = () => {
             <button
               type="button"
               onClick={handleToggleStatus}
-              className={`px-4 py-2 text-white rounded-md ${toggling && isActive(toggling)
+              className={`px-4 py-2 text-ink rounded-md ${toggling && isActive(toggling)
                 ? 'bg-amber-600 hover:bg-amber-700'
                 : 'bg-green-600 hover:bg-green-700'}`}
             >
@@ -412,7 +412,7 @@ const Garages = () => {
             <button
               type="submit"
               disabled={deleteCode.toUpperCase().trim() !== deleting?.garage_code}
-              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Delete Forever
             </button>

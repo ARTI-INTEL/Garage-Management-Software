@@ -41,12 +41,12 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-      <div className="max-w-md w-full bg-gray-800 rounded-lg shadow-xl p-8">
+    <div className="min-h-screen flex items-center justify-center bg-app px-4">
+      <div className="max-w-md w-full bg-surface border border-gray-300 rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
           <Wrench className="w-12 h-12 text-blue-500 mx-auto mb-4" />
           <h2 className="text-3xl font-bold text-white">GMS Login</h2>
-          <p className="text-gray-400 mt-2">Sign in to your account</p>
+          <p className="text-gray-600 mt-2">Sign in to your account</p>
         </div>
         
         {error && (
@@ -73,29 +73,29 @@ const Login = () => {
             </div>
           )}
           <div>
-            <label htmlFor="reset-username" className="block text-sm font-medium text-gray-300">Username</label>
+            <label htmlFor="reset-username" className="block text-sm font-medium text-gray-600">Username</label>
             <input
               id="reset-username"
               type="text"
               value={resetForm.username}
               onChange={(e) => setResetForm({ ...resetForm, username: e.target.value })}
-              className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="reset-garage-code" className="block text-sm font-medium text-gray-300">Garage Code</label>
+            <label htmlFor="reset-garage-code" className="block text-sm font-medium text-gray-600">Garage Code</label>
             <input
               id="reset-garage-code"
               type="text"
               value={resetForm.garage_code}
               onChange={(e) => setResetForm({ ...resetForm, garage_code: e.target.value.toUpperCase() })}
-              className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="reset-code" className="block text-sm font-medium text-gray-300">Reset Code</label>
+            <label htmlFor="reset-code" className="block text-sm font-medium text-gray-600">Reset Code</label>
             <input
               id="reset-code"
               type="text"
@@ -104,19 +104,19 @@ const Login = () => {
               value={resetForm.code}
               onChange={(e) => setResetForm({ ...resetForm, code: e.target.value.replace(/\D/g, '') })}
               placeholder="6 digits"
-              className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white placeholder-gray-500 tracking-widest focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md tracking-widest focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="reset-password" className="block text-sm font-medium text-gray-300">New Password (min 6)</label>
+            <label htmlFor="reset-password" className="block text-sm font-medium text-gray-600">New Password (min 6)</label>
             <input
               id="reset-password"
               type="password"
               minLength={6}
               value={resetForm.new_password}
               onChange={(e) => setResetForm({ ...resetForm, new_password: e.target.value })}
-              className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
@@ -124,13 +124,13 @@ const Login = () => {
             <button
               type="button"
               onClick={() => { setMode('login'); setResetError(''); }}
-              className="flex-1 py-2 px-4 border border-gray-600 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700"
+              className="flex-1 py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-600 hover:bg-elevated"
             >
               Back
             </button>
             <button
               type="submit"
-              className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
             >
               Reset Password
             </button>
@@ -139,49 +139,49 @@ const Login = () => {
         ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="login-username" className="block text-sm font-medium text-gray-300">Username</label>
+            <label htmlFor="login-username" className="block text-sm font-medium text-gray-600">Username</label>
             <input
               id="login-username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="login-password" className="block text-sm font-medium text-gray-300">Password</label>
+            <label htmlFor="login-password" className="block text-sm font-medium text-gray-600">Password</label>
             <input
               id="login-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
           <div>
-            <label htmlFor="login-garage-code" className="block text-sm font-medium text-gray-300">Garage Code</label>
+            <label htmlFor="login-garage-code" className="block text-sm font-medium text-gray-600">Garage Code</label>
             <input
               id="login-garage-code"
               type="text"
               value={garageCode}
               onChange={(e) => setGarageCode(e.target.value.toUpperCase())}
               placeholder=""
-              className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white placeholder-gray-500 focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
           >
             Sign In
           </button>
           <button
             type="button"
             onClick={() => { setMode('reset'); setError(''); setResetDone(false); }}
-            className="w-full text-sm text-gray-400 hover:text-blue-400 underline"
+            className="w-full text-sm text-gray-600 hover:text-blue-400 underline"
           >
             Forgot password?
           </button>

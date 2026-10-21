@@ -41,8 +41,8 @@ const DashboardLayout = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-64 bg-gray-900 text-white flex flex-col">
-        <div className="p-4 flex items-center gap-2 border-b border-gray-800">
+      <div className="w-64 bg-surface text-white flex flex-col">
+        <div className="p-4 flex items-center gap-2 border-b border-gray-300">
           <Wrench className="text-blue-500" />
           <span className="text-xl font-bold tracking-wider">GMS</span>
         </div>
@@ -56,7 +56,9 @@ const DashboardLayout = () => {
                 key={item.name}
                 to={item.href}
                 className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
-                  isActive ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                  isActive
+                    ? 'bg-blue-600/15 text-blue-400 font-medium border-l-2 border-blue-500 rounded-l-none'
+                    : 'text-gray-700 hover:bg-elevated hover:text-white'
                 }`}
               >
                 <Icon size={20} />
@@ -66,7 +68,7 @@ const DashboardLayout = () => {
           })}
         </nav>
 
-        <div className="p-4 border-t border-gray-800">
+        <div className="p-4 border-t border-gray-300">
           <div className="mb-4">
             <p className="text-sm text-gray-400">Logged in as</p>
             <p className="font-medium text-white truncate">{user?.username}</p>
@@ -84,7 +86,7 @@ const DashboardLayout = () => {
 
       {/* Main Content */}
       <div className="flex-1 overflow-auto">
-        <header className="bg-white shadow-sm px-8 py-4 flex items-center justify-between">
+        <header className="bg-elevated border-b border-gray-300 px-8 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-semibold text-gray-800 capitalize">
             {location.pathname.split('/')[1] || 'Dashboard'}
           </h1>

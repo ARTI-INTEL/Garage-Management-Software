@@ -41,13 +41,13 @@ const MyJobs = () => {
       {loading ? (
         <p>Loading...</p>
       ) : jobs.length === 0 ? (
-        <div className="bg-white p-8 rounded-lg shadow text-center">
+        <div className="bg-surface p-8 rounded-lg shadow text-center">
           <p className="text-gray-500">You currently have no jobs assigned.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {jobs.map(job => (
-            <div key={job.id} className="bg-white rounded-lg shadow border-t-4 border-blue-500 overflow-hidden">
+            <div key={job.id} className="bg-surface rounded-lg shadow border-t-4 border-blue-500 overflow-hidden">
               <div className="p-5">
                 <div className="flex justify-between items-start mb-4">
                   <div>
@@ -61,7 +61,7 @@ const MyJobs = () => {
                     <select 
                       value={job.status}
                       onChange={(e) => updateJobStatus(job.id, e.target.value)}
-                      className="bg-gray-50 border rounded-md p-1 text-sm font-semibold text-blue-700 outline-none focus:ring-2 focus:ring-blue-500"
+                      className="bg-gray-50 border rounded-md p-1 text-sm font-semibold text-blue-400 outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="Awaiting Diagnosis">Awaiting Diagnosis</option>
                       <option value="Diagnosed">Diagnosed</option>

@@ -53,7 +53,7 @@ const Invoices = () => {
               className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${
                 filter === f
                   ? 'bg-blue-600 text-white border-blue-600'
-                  : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+                  : 'bg-surface text-gray-600 border-gray-300 hover:bg-gray-50'
               }`}
             >
               {f || 'All'}
@@ -62,7 +62,7 @@ const Invoices = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-surface rounded-lg shadow overflow-hidden">
         <table className="w-full text-left">
           <thead className="bg-gray-50 border-b">
             <tr>
@@ -83,12 +83,12 @@ const Invoices = () => {
             ) : (
               invoices.map((inv) => (
                 <tr key={inv.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-mono font-semibold text-blue-700">{inv.invoice_number}</td>
+                  <td className="px-6 py-4 font-mono font-semibold text-blue-400">{inv.invoice_number}</td>
                   <td className="px-6 py-4 text-gray-600 text-sm">
                     {new Date(inv.invoice_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
                   </td>
                   <td className="px-6 py-4">
-                    <span className="font-bold text-sm bg-yellow-300 px-2 py-0.5 rounded">{inv.registration_number}</span>
+                    <span className="font-bold text-sm bg-yellow-300 text-ink px-2 py-0.5 rounded">{inv.registration_number}</span>
                     <span className="text-gray-500 text-xs ml-2">{inv.make} {inv.model}</span>
                   </td>
                   <td className="px-6 py-4 text-gray-700">{inv.customer_name}</td>

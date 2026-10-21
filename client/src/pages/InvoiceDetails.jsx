@@ -100,7 +100,7 @@ const InvoiceDetails = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow p-6 flex flex-wrap justify-between items-start gap-4">
+      <div className="bg-surface rounded-lg shadow p-6 flex flex-wrap justify-between items-start gap-4">
         <div>
           <h2 className="text-2xl font-bold">{invoice.invoice_number}</h2>
           <p className="text-gray-500 text-sm mt-1">
@@ -127,21 +127,21 @@ const InvoiceDetails = () => {
 
       {/* Customer + Vehicle */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-5">
+        <div className="bg-surface rounded-lg shadow p-5">
           <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Bill To</h3>
           <p className="font-bold text-lg">{invoice.customer_name}</p>
           <p className="text-gray-600">{invoice.mobile_number}</p>
           {invoice.customer_email && <p className="text-gray-600">{invoice.customer_email}</p>}
         </div>
-        <div className="bg-white rounded-lg shadow p-5">
+        <div className="bg-surface rounded-lg shadow p-5">
           <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Vehicle</h3>
-          <div className="bg-yellow-400 inline-block px-4 py-1 rounded font-bold text-lg tracking-wider mb-2">{invoice.registration_number}</div>
+          <div className="bg-yellow-400 text-ink inline-block px-4 py-1 rounded font-bold text-lg tracking-wider mb-2">{invoice.registration_number}</div>
           <p className="text-gray-700">{invoice.make} {invoice.model} {invoice.year && `(${invoice.year})`}</p>
         </div>
       </div>
 
       {/* Line Items */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-surface rounded-lg shadow overflow-hidden">
         <table className="w-full text-left">
           <thead className="bg-gray-50 border-b">
             <tr>
@@ -156,7 +156,7 @@ const InvoiceDetails = () => {
             {invoice.items?.map((item) => (
               <tr key={item.id} className="hover:bg-gray-50">
                 <td className="px-6 py-3">
-                  <span className={`px-2 py-0.5 rounded text-xs font-semibold ${item.item_type === 'labour' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
+                  <span className={`px-2 py-0.5 rounded text-xs font-semibold ${item.item_type === 'labour' ? 'bg-blue-100 text-blue-400' : 'bg-orange-100 text-orange-700'}`}>
                     {item.item_type}
                   </span>
                 </td>
@@ -208,7 +208,7 @@ const InvoiceDetails = () => {
 
       {/* Payment History */}
       {invoice.payments && invoice.payments.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-surface rounded-lg shadow p-6">
           <h3 className="text-lg font-semibold mb-4">Payment History</h3>
           <div className="space-y-3">
             {invoice.payments.map((p) => (

@@ -122,7 +122,7 @@ const Users = () => {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-surface rounded-lg shadow overflow-hidden">
         <table className="w-full text-left">
           <thead className="bg-gray-50 border-b">
             <tr>
@@ -142,7 +142,7 @@ const Users = () => {
                 <td className="px-6 py-4 font-medium text-gray-900">{u.username}</td>
                 <td className="px-6 py-4 text-gray-600">{u.full_name || '-'}</td>
                 <td className="px-6 py-4">
-                  <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${u.role === 'admin' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}`}>
+                  <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold ${u.role === 'admin' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-400'}`}>
                     {u.role === 'admin' ? <ShieldCheck size={12} /> : <Wrench size={12} />}
                     {u.role}
                   </span>

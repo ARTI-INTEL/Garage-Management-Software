@@ -168,18 +168,18 @@ const VehicleDetails = () => {
   return (
     <div className="space-y-6 max-w-5xl">
       {/* Number Plate Header */}
-      <div className="bg-white rounded-lg shadow p-6 flex justify-between items-center border-l-4 border-blue-500">
+      <div className="bg-surface rounded-lg shadow p-6 flex justify-between items-center border-l-4 border-blue-500">
         <div>
           <h2 className="text-3xl font-bold uppercase">{vehicle.make} {vehicle.model}</h2>
           <p className="text-gray-500">{vehicle.year} • {vehicle.colour}</p>
         </div>
-        <div className="bg-yellow-400 px-6 py-2 rounded shadow-inner border-2 border-yellow-500">
+        <div className="bg-yellow-400 text-ink px-6 py-2 rounded shadow-inner border-2 border-yellow-500">
           <span className="text-3xl font-bold tracking-widest">{vehicle.registration_number}</span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-surface rounded-lg shadow p-6">
           <h3 className="text-lg font-semibold border-b pb-2 mb-4 flex items-center gap-2">
             <CarIcon className="text-gray-500"/> Vehicle Information
           </h3>
@@ -190,7 +190,7 @@ const VehicleDetails = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-surface rounded-lg shadow p-6">
           <h3 className="text-lg font-semibold border-b pb-2 mb-4 flex items-center gap-2">
             <User className="text-gray-500"/> Owner Information
           </h3>
@@ -203,7 +203,7 @@ const VehicleDetails = () => {
       </div>
 
       {/* Diagnosis and Repairs */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-surface rounded-lg shadow p-6">
         <div className="flex justify-between items-center border-b pb-2 mb-4">
           <h3 className="text-lg font-semibold flex items-center gap-2">
             <Wrench className="text-gray-500"/> Diagnosis and Repair Jobs
@@ -312,7 +312,7 @@ const VehicleDetails = () => {
                               <span className="mt-1 w-2 h-2 rounded-full bg-blue-400 shrink-0" />
                               <span className="text-gray-600">
                                 <span className="font-medium text-gray-800">{h.from_status || 'Created'}</span>{' '}→{' '}
-                                <span className="font-medium text-blue-700">{h.to_status}</span>
+                                <span className="font-medium text-blue-400">{h.to_status}</span>
                                 <span className="text-gray-400"> — {h.changed_by_name || 'system'} · {new Date(h.changed_at).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}</span>
                               </span>
                             </li>
@@ -330,7 +330,7 @@ const VehicleDetails = () => {
 
       {/* Invoice Section */}
       {user?.role === 'admin' && (
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-surface rounded-lg shadow p-6">
           <div className="flex justify-between items-center border-b pb-2 mb-4">
             <h3 className="text-lg font-semibold flex items-center gap-2">
               <FileText className="text-gray-500"/> Invoices
@@ -350,7 +350,7 @@ const VehicleDetails = () => {
               {invoices.map(inv => (
                 <Link to={`/invoices/${inv.id}`} key={inv.id} className="flex justify-between items-center p-4 border rounded-lg hover:bg-gray-50 transition-colors block">
                   <div>
-                    <span className="font-mono font-semibold text-blue-700">{inv.invoice_number}</span>
+                    <span className="font-mono font-semibold text-blue-400">{inv.invoice_number}</span>
                     <span className="text-gray-400 text-sm ml-3">
                       {new Date(inv.invoice_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
                     </span>
@@ -373,14 +373,14 @@ const VehicleDetails = () => {
       )}
 
       {/* Service History (odometer tracking) */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-surface rounded-lg shadow p-6">
         <div className="flex justify-between items-center border-b pb-2 mb-4">
           <h3 className="text-lg font-semibold flex items-center gap-2">
             <Gauge className="text-gray-500"/> Service History
           </h3>
           {services.length > 0 && (
             <span className="text-xs text-gray-500">
-              Last serviced at <span className="font-bold text-blue-700">{services[0].odometer != null ? `${services[0].odometer} km` : 'unknown km'}</span> on {new Date(services[0].service_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+              Last serviced at <span className="font-bold text-blue-400">{services[0].odometer != null ? `${services[0].odometer} km` : 'unknown km'}</span> on {new Date(services[0].service_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
             </span>
           )}
         </div>
@@ -399,7 +399,7 @@ const VehicleDetails = () => {
               {services.map(s => (
                 <tr key={s.id}>
                   <td className="py-2 text-gray-700">{new Date(s.service_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
-                  <td className="py-2 font-semibold text-blue-700">{s.odometer != null ? `${s.odometer} km` : '-'}</td>
+                  <td className="py-2 font-semibold text-blue-400">{s.odometer != null ? `${s.odometer} km` : '-'}</td>
                   <td className="py-2 text-gray-700">{s.description || s.job_title || '-'}</td>
                 </tr>
               ))}
@@ -483,7 +483,7 @@ const VehicleDetails = () => {
       <Modal isOpen={isInvoiceModalOpen} onClose={() => setIsInvoiceModalOpen(false)} title="Generate Invoice">
         <form onSubmit={handleGenerateInvoice} className="space-y-4">
           <p className="text-sm text-gray-600">
-            This creates an invoice from all repair jobs for <span className="font-bold bg-yellow-300 px-1 rounded">{vehicle.registration_number}</span>,
+            This creates an invoice from all repair jobs for <span className="font-bold bg-yellow-300 text-ink px-1 rounded">{vehicle.registration_number}</span>,
             including labour and parts. Tax is applied from Settings.
           </p>
           <div>

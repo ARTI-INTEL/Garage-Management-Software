@@ -39,19 +39,19 @@ const Reports = () => {
 
       {/* VAT summary cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-5 rounded-lg shadow border-l-4 border-blue-500">
+        <div className="bg-surface p-5 rounded-lg shadow border-l-4 border-blue-500">
           <p className="text-xs text-gray-500 uppercase tracking-wider">Invoices Issued</p>
           <p className="text-2xl font-bold mt-1">{reports.vat.invoice_count}</p>
         </div>
-        <div className="bg-white p-5 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-surface p-5 rounded-lg shadow border-l-4 border-green-500">
           <p className="text-xs text-gray-500 uppercase tracking-wider">Total Subtotal</p>
           <p className="text-2xl font-bold mt-1">AED {parseFloat(reports.vat.total_subtotal).toFixed(2)}</p>
         </div>
-        <div className="bg-white p-5 rounded-lg shadow border-l-4 border-orange-500">
+        <div className="bg-surface p-5 rounded-lg shadow border-l-4 border-orange-500">
           <p className="text-xs text-gray-500 uppercase tracking-wider">VAT / Tax Collected</p>
           <p className="text-2xl font-bold mt-1">AED {parseFloat(reports.vat.total_tax).toFixed(2)}</p>
         </div>
-        <div className="bg-white p-5 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-surface p-5 rounded-lg shadow border-l-4 border-purple-500">
           <p className="text-xs text-gray-500 uppercase tracking-wider">VAT This Month</p>
           <p className="text-2xl font-bold mt-1">AED {parseFloat(reports.vat.tax_this_month).toFixed(2)}</p>
         </div>
@@ -59,7 +59,7 @@ const Reports = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Revenue by month */}
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="bg-surface p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold text-gray-700 mb-4">Revenue by Month (Last 12)</h3>
           {reports.revenueByMonth.length === 0 ? (
             <p className="text-gray-400 text-sm">No payments recorded yet.</p>
@@ -77,7 +77,7 @@ const Reports = () => {
         </div>
 
         {/* Mechanic performance */}
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="bg-surface p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold text-gray-700 mb-4">Mechanic Performance</h3>
           {reports.mechanicPerformance.length === 0 ? (
             <p className="text-gray-400 text-sm">No completed jobs yet.</p>
@@ -104,7 +104,7 @@ const Reports = () => {
         </div>
 
         {/* Top customers */}
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="bg-surface p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold text-gray-700 mb-4">Top Customers</h3>
           {reports.topCustomers.length === 0 ? (
             <p className="text-gray-400 text-sm">No invoices yet.</p>
@@ -131,7 +131,7 @@ const Reports = () => {
         </div>
 
         {/* Payment methods */}
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="bg-surface p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold text-gray-700 mb-4">Payments by Method</h3>
           {reports.paymentMethods.length === 0 ? (
             <p className="text-gray-400 text-sm">No payments yet.</p>

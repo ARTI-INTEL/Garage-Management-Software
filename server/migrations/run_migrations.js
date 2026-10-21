@@ -144,6 +144,49 @@ const runMigrations = async () => {
         `FOREIGN KEY (garage_id) REFERENCES garages(id) ON DELETE CASCADE`);
     }
 
+    // 4b. Cascade-safe invoice / quotation FKs.
+    // invoices.vehicle_id, invoices.customer_id and quotations.customer_id were
+    // created without ON DELETE CASCADE on older DBs, so `DELETE FROM garages`
+    // could abort with "Cannot delete or update a parent row" when MySQL
+    // cascaded to customers/vehicles before their invoices/quotations rows.
+    // Drop any non-cascading FK on those columns and add a cascading one.
+    const CASCADE_FKS = [
+      { table: 'invoices', column: 'vehicle_id', refTable: 'vehicles' },
+      { table: 'invoices', column: 'customer_id', refTable: 'customers' },
+      { table: 'quotations', column: 'customer_id', refTable: 'customers' }
+    ];
+    for (const { table, column, refTable } of CASCADE_FKS) {
+      const [fks] = await connection.query(
+        `SELECT rc.CONSTRAINT_NAME AS name, rc.DELETE_RULE AS delete_rule
+           FROM information_schema.KEY_COLUMN_USAGE kcu
+           JOIN information_schema.REFERENTIAL_CONSTRAINTS rc
+             ON rc.CONSTRAINT_SCHEMA = kcu.TABLE_SCHEMA
+            AND rc.TABLE_NAME = kcu.TABLE_NAME
+            AND rc.CONSTRAINT_NAME = kcu.CONSTRAINT_NAME
+          WHERE kcu.TABLE_SCHEMA = ?
+            AND kcu.TABLE_NAME = ?
+            AND kcu.COLUMN_NAME = ?
+            AND kcu.REFERENCED_TABLE_NAME = ?`,
+        [dbName, table, column, refTable]
+      );
+      let needsCascade = fks.length > 0;
+      for (const fk of fks) {
+        if (String(fk.delete_rule).toUpperCase() === 'CASCADE') {
+          needsCascade = false;
+        } else {
+          await connection.query(`ALTER TABLE \`${table}\` DROP FOREIGN KEY \`${fk.name}\``);
+          console.log(`Dropped non-cascading FK ${fk.name} (${table}.${column})`);
+        }
+      }
+      if (needsCascade) {
+        await connection.query(
+          `ALTER TABLE \`${table}\` ADD CONSTRAINT \`fk_${table}_${column}_cascade\`
+             FOREIGN KEY (${column}) REFERENCES ${refTable}(id) ON DELETE CASCADE`
+        );
+        console.log(`Added cascading FK fk_${table}_${column}_cascade`);
+      }
+    }
+
     // 5. Replace old global unique keys with (garage_id, col) composites
     for (const { table, index, columns } of COMPOSITE_UNIQUES) {
       // Drop existing unique indexes that overlap our tenant-scoped columns

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const statusColor = {
   'Draft': 'bg-gray-100 text-gray-600',
-  'Sent': 'bg-blue-100 text-blue-700',
+  'Sent': 'bg-blue-100 text-blue-400',
   'Approved': 'bg-green-100 text-green-700',
   'Rejected': 'bg-red-100 text-red-700',
   'Expired': 'bg-gray-100 text-gray-500',
@@ -81,7 +81,7 @@ const Quotations = () => {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-surface rounded-lg shadow overflow-hidden">
         <table className="w-full text-left">
           <thead className="bg-gray-50 border-b">
             <tr>
@@ -104,13 +104,13 @@ const Quotations = () => {
               </td></tr>
             ) : quotes.map(q => (
               <tr key={q.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 font-mono font-semibold text-blue-700">{q.quote_number}</td>
+                <td className="px-6 py-4 font-mono font-semibold text-blue-400">{q.quote_number}</td>
                 <td className="px-6 py-4 text-gray-600 text-sm">
                   {new Date(q.quote_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
                 </td>
                 <td className="px-6 py-4 text-gray-700 text-sm">{q.job_title}</td>
                 <td className="px-6 py-4">
-                  <Link to={`/vehicles/${q.vehicle_id}`} className="font-bold text-sm bg-yellow-300 px-2 py-0.5 rounded hover:underline">
+                  <Link to={`/vehicles/${q.vehicle_id}`} className="font-bold text-sm bg-yellow-300 text-ink px-2 py-0.5 rounded hover:underline">
                     {q.registration_number}
                   </Link>
                 </td>

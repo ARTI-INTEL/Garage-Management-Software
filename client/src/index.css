@@ -1,1 +1,212 @@
 @import "tailwindcss";
+
+/* ==========================================================================
+   GMS — Midnight Garage theme
+   Modern automotive SaaS dashboard: dark navy surfaces, blue primary
+   actions, cyan accents. All component styling flows from these variables.
+   ========================================================================== */
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #0B1120;
+  --bg-secondary: #111C2E;
+  --bg-elevated: #1C2B40;
+
+  /* Brand Colors */
+  --color-primary: #3B82F6;
+  --color-primary-hover: #2563EB;
+  --color-accent: #22D3EE;
+  --color-accent-hover: #06B6D4;
+
+  /* Typography */
+  --text-primary: #E5EDF7;
+  --text-secondary: #9CA3AF;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
+
+  /* Borders and Dividers */
+  --border-default: #293548;
+  --border-focus: #3B82F6;
+
+  /* Status Colors */
+  --success: #22C55E;
+  --success-bg: #142D25;
+  --warning: #F59E0B;
+  --warning-bg: #332817;
+  --danger: #EF4444;
+  --danger-bg: #351B23;
+  --info: #38BDF8;
+  --info-bg: #142A3B;
+
+  /* Form Elements */
+  --input-bg: #0B1120;
+  --input-border: #293548;
+  --input-placeholder: #64748B;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Tailwind v4 theme: semantic utilities + remap of the default palette so
+   every utility used across the app resolves to the Midnight Garage palette.
+   Utilities always reference the :root variables above — nothing is hardcoded
+   in components. */
+@theme {
+  /* Semantic utilities */
+  --color-app: var(--bg-primary);        /* bg-app      — page background */
+  --color-surface: var(--bg-secondary);  /* bg-surface  — sidebar, cards */
+  --color-elevated: var(--bg-elevated);  /* bg-elevated — modals, headers, hover */
+  --color-ink: var(--bg-primary);        /* text-ink    — dark text on bright chips */
+
+  /* Neutrals (navy scale) */
+  --color-white: var(--text-inverse);       /* text-white — bright text on dark/colored */
+  --color-gray-50: var(--bg-elevated);      /* table headers, row hover, strips */
+  --color-gray-100: var(--bg-primary);      /* page background, tracks, chips */
+  --color-gray-200: var(--border-default);
+  --color-gray-300: var(--border-default);  /* input and control borders */
+  --color-gray-400: var(--text-muted);      /* muted text, placeholders, icons */
+  --color-gray-500: var(--text-secondary);  /* table headers, secondary text */
+  --color-gray-600: var(--text-secondary);  /* secondary text */
+  --color-gray-700: var(--text-primary);    /* labels, headings */
+  --color-gray-800: var(--text-primary);    /* headings */
+  --color-gray-900: var(--text-primary);    /* key values */
+
+  /* Primary / info (blue) */
+  --color-blue-50: var(--info-bg);
+  --color-blue-100: var(--info-bg);
+  --color-blue-200: var(--border-default);
+  --color-blue-400: var(--info);            /* highlights, timeline dots */
+  --color-blue-500: var(--color-primary);   /* focus rings, chart bars */
+  --color-blue-600: var(--color-primary);   /* primary buttons, links */
+  --color-blue-700: var(--color-primary-hover);
+  --color-blue-800: #60A5FA;                /* bright hover text */
+  --color-indigo-500: var(--color-primary);
+
+  /* Success (green) */
+  --color-green-50: var(--success-bg);
+  --color-green-100: var(--success-bg);
+  --color-green-200: var(--border-default);
+  --color-green-400: var(--success);
+  --color-green-500: var(--success);
+  --color-green-600: var(--success);
+  --color-green-700: #16A34A;               /* badge text on success-bg */
+  --color-green-800: #4ADE80;               /* bright hover text */
+
+  /* Warning (red) */
+  --color-red-50: var(--danger-bg);
+  --color-red-100: var(--danger-bg);
+  --color-red-200: var(--border-default);
+  --color-red-300: #F87171;
+  --color-red-400: var(--danger);
+  --color-red-500: var(--danger);
+  --color-red-600: var(--danger);
+  --color-red-700: var(--danger);
+  --color-red-800: #F87171;                 /* bright hover text */
+
+  /* Warning (amber/yellow/orange) */
+  --color-amber-50: var(--warning-bg);
+  --color-amber-200: var(--border-default);
+  --color-amber-400: var(--warning);
+  --color-amber-600: var(--warning);
+  --color-amber-700: #B45309;               /* darker hover background */
+  --color-amber-800: #FBBF24;               /* bright hover / warning text */
+
+  --color-yellow-50: var(--warning-bg);
+  --color-yellow-100: var(--warning-bg);
+  --color-yellow-200: var(--border-default);
+  --color-yellow-300: var(--warning);       /* number-plate chips */
+  --color-yellow-400: var(--warning);       /* number plates, status dots */
+  --color-yellow-500: #D97706;              /* plate edge */
+  --color-yellow-600: var(--warning);
+  --color-yellow-700: var(--warning);       /* badge text on warning-bg */
+
+  --color-orange-50: var(--warning-bg);
+  --color-orange-100: var(--warning-bg);
+  --color-orange-200: var(--border-default);
+  --color-orange-300: var(--border-default);
+  --color-orange-400: var(--warning);
+  --color-orange-500: var(--warning);
+  --color-orange-600: var(--warning);
+  --color-orange-700: var(--warning);
+  --color-orange-800: var(--warning);
+
+  /* Accent (violet, used sparingly for payment/quote actions) */
+  --color-purple-50: #241D3D;
+  --color-purple-100: #241D3D;
+  --color-purple-200: #6D5BD0;
+  --color-purple-500: #8B5CF6;
+  --color-purple-600: #8B5CF6;
+  --color-purple-700: #A78BFA;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  /* Tailwind v4 defaults borders to currentColor — use the theme border */
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border-default);
+  }
+
+  /* Dark form controls, wherever they appear */
+  input,
+  textarea,
+  select {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border-color: var(--input-border);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--input-placeholder);
+  }
+
+  select option {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+  }
+
+  :disabled {
+    cursor: not-allowed;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.35);
+  }
+
+  /* Subtle dark scrollbars */
+  * {
+    scrollbar-color: var(--border-default) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border-default);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

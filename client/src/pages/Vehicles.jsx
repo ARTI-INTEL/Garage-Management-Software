@@ -88,9 +88,9 @@ const Vehicles = () => {
           <p className="text-gray-500">No vehicles found</p>
         ) : (
           vehicles.map(v => (
-            <Link to={`/vehicles/${v.id}`} key={v.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow border border-gray-100 overflow-hidden block">
+            <Link to={`/vehicles/${v.id}`} key={v.id} className="bg-surface rounded-lg shadow hover:shadow-md transition-shadow border border-gray-300 overflow-hidden block">
               <div className="bg-yellow-400 p-3 text-center border-b-4 border-yellow-500">
-                <span className="text-2xl font-bold tracking-widest text-gray-900">{v.registration_number}</span>
+                <span className="text-2xl font-bold tracking-widest text-ink">{v.registration_number}</span>
               </div>
               <div className="p-4 space-y-2">
                 <div className="flex justify-between items-center">

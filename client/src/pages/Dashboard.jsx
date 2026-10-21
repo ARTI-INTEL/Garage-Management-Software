@@ -72,7 +72,7 @@ const Dashboard = () => {
         {cards.map((c) => {
           const Icon = c.icon;
           return (
-            <div key={c.label} className="bg-white p-6 rounded-lg shadow flex items-center gap-4">
+            <div key={c.label} className="bg-surface p-6 rounded-lg shadow flex items-center gap-4">
               <div className={`p-3 rounded-lg ${c.color}`}>
                 <Icon size={24} />
               </div>
@@ -93,7 +93,7 @@ const Dashboard = () => {
           </div>
           <div className="flex flex-wrap gap-2">
             {lowStock.slice(0, 8).map(p => (
-              <span key={p.id} className="bg-white border border-orange-300 text-orange-800 text-xs font-medium px-2 py-1 rounded">
+              <span key={p.id} className="bg-elevated border border-gray-300 text-orange-800 text-xs font-medium px-2 py-1 rounded">
                 {p.part_number} — {p.name} ({p.qty_in_stock} left)
               </span>
             ))}
@@ -104,21 +104,21 @@ const Dashboard = () => {
 
       {/* Revenue cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-surface p-6 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center gap-2 text-green-600 mb-1">
             <Wallet size={18} />
             <span className="text-sm font-medium uppercase tracking-wider">Collected This Month</span>
           </div>
           <p className="text-2xl font-bold text-gray-900">{currency} {stats.paidTotalThisMonth.toFixed(2)}</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+        <div className="bg-surface p-6 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center gap-2 text-blue-600 mb-1">
             <TrendingUp size={18} />
             <span className="text-sm font-medium uppercase tracking-wider">Total Revenue</span>
           </div>
           <p className="text-2xl font-bold text-gray-900">{currency} {stats.totalRevenue.toFixed(2)}</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow border-l-4 border-red-500">
+        <div className="bg-surface p-6 rounded-lg shadow border-l-4 border-red-500">
           <div className="flex items-center gap-2 text-red-600 mb-1">
             <AlertCircle size={18} />
             <span className="text-sm font-medium uppercase tracking-wider">Outstanding</span>
@@ -129,7 +129,7 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Job Status Chart */}
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="bg-surface p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold text-gray-700 mb-4">Jobs by Status</h3>
           {stats.statusBreakdown.length === 0 ? (
             <p className="text-gray-400 text-sm">No jobs yet.</p>
@@ -154,7 +154,7 @@ const Dashboard = () => {
         </div>
 
         {/* Revenue Chart */}
-        <div className="bg-white p-6 rounded-lg shadow">
+        <div className="bg-surface p-6 rounded-lg shadow">
           <h3 className="text-lg font-semibold text-gray-700 mb-4">Revenue (Last 6 Months)</h3>
           {stats.monthlyRevenue.length === 0 ? (
             <p className="text-gray-400 text-sm">No payments recorded yet.</p>

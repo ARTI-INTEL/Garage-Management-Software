@@ -123,8 +123,8 @@ CREATE TABLE IF NOT EXISTS invoices (
     UNIQUE KEY uniq_invoices_garage_number (garage_id, invoice_number),
     KEY idx_invoices_garage (garage_id),
     FOREIGN KEY (garage_id) REFERENCES garages(id) ON DELETE CASCADE,
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id),
-    FOREIGN KEY (customer_id) REFERENCES customers(id)
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS invoice_items (
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS quotations (
     FOREIGN KEY (garage_id) REFERENCES garages(id) ON DELETE CASCADE,
     FOREIGN KEY (repair_job_id) REFERENCES repair_jobs(id) ON DELETE CASCADE,
     FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE,
-    FOREIGN KEY (customer_id) REFERENCES customers(id)
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS quotation_items (

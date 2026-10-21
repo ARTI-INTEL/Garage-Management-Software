@@ -84,7 +84,7 @@ const Settings = () => {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-5">
+      <form onSubmit={handleSubmit} className="bg-surface rounded-lg shadow p-6 space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Garage Name *</label>
@@ -166,7 +166,7 @@ const Settings = () => {
       </form>
 
       {/* Change own password */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-surface rounded-lg shadow p-6">
         <h3 className="text-lg font-semibold mb-4">Change My Password</h3>
         <form onSubmit={handlePasswordChange} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

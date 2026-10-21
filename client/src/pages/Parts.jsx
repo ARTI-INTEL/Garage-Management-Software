@@ -103,7 +103,7 @@ const Parts = () => {
           </div>
           <button
             onClick={() => setLowOnly(!lowOnly)}
-            className={`px-3 py-2 rounded-lg text-sm font-medium border transition-colors ${lowOnly ? 'bg-orange-500 text-white border-orange-500' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'}`}
+            className={`px-3 py-2 rounded-lg text-sm font-medium border transition-colors ${lowOnly ? 'bg-orange-500 text-ink border-orange-500' : 'bg-surface text-gray-600 border-gray-300 hover:bg-gray-50'}`}
           >
             Low stock only
           </button>
@@ -115,7 +115,7 @@ const Parts = () => {
 
       {message && <div className="px-4 py-3 rounded-lg text-sm bg-red-50 text-red-700 border border-red-200">{message.text}</div>}
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-surface rounded-lg shadow overflow-hidden">
         <table className="w-full text-left">
           <thead className="bg-gray-50 border-b">
             <tr>
